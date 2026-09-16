@@ -105,19 +105,22 @@ a {
   opacity: 0.14;
 }
 
-/* Header */
+/* Header / navbar */
 .page-header {
-  position: relative;
-  z-index: 1;
-  padding: 1.5rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(11, 14, 22, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--outline-on-dark);
+  padding: 1.1rem 0;
 }
 
 .page-header .wrap {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: 1rem;
-  flex-wrap: wrap;
 }
 
 .brand {
@@ -130,26 +133,12 @@ a {
   font-family: "Montserrat", sans-serif;
   font-weight: 700;
   font-size: 1.05rem;
-  color: var(--ink);
+  color: var(--ink-on-dark);
 }
 
 .brand-name em {
   font-style: normal;
   color: var(--accent);
-}
-
-.header-link {
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: var(--ink-muted-on-dark);
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.15s ease, color 0.15s ease;
-}
-
-.header-link:hover {
-  color: var(--accent);
-  border-color: var(--accent);
 }
 
 /* Hero */
@@ -179,6 +168,22 @@ a {
   font-size: 1.05rem;
   color: var(--ink-soft-on-dark);
   max-width: 60ch;
+}
+
+.hero-actions {
+  margin-top: 1.5rem;
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--accent-soft-text);
+  border: 1px solid var(--accent-dark);
+}
+
+.btn-outline:hover {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--ink-on-dark);
 }
 
 /* Photo beside the hero text, fading into the page on the edge nearest the text */
@@ -259,26 +264,26 @@ a {
   gap: 0.75rem;
 }
 
-/* Space reserved for the Bombocado infographic/image, right beside the links */
+/* Space reserved for the Bombocado infographic/image, right beside the links.
+   Fixed box + object-fit:contain so it never dominates the card, no matter
+   how large or padded the generated image file is. */
 .project-image {
-  flex: 0 0 auto;
-  max-width: 180px;
+  flex: 0 0 96px;
+  width: 96px;
+  height: 96px;
 }
 
 .project-image img {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: contain;
 }
 
 @media (max-width: 640px) {
   .project-footer-row {
     flex-direction: column;
     align-items: flex-start;
-  }
-
-  .project-image {
-    max-width: 140px;
   }
 }
 
