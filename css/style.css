@@ -225,12 +225,21 @@ a {
 .project-card {
   position: relative;
   z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(1.5rem, 4vw, 3rem);
   background: var(--surface);
   border: 1px solid var(--outline);
   border-radius: var(--radius-card);
   box-shadow: var(--shadow-card-dark);
   padding: 2.25rem clamp(1.5rem, 4vw, 3rem);
   margin: 1.5rem 0 3rem;
+}
+
+.project-content {
+  flex: 1 1 380px;
+  min-width: 0;
 }
 
 .project-mark {
@@ -250,40 +259,41 @@ a {
   margin: 0 0 1.5rem;
 }
 
-.project-footer-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.75rem;
-  flex-wrap: wrap;
-}
-
 .project-links {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
 }
 
-/* Space reserved for the Bombocado infographic/image, right beside the links.
-   Fixed box + object-fit:contain so it never dominates the card, no matter
-   how large or padded the generated image file is. */
+/* The Bombocado seal, centered beside the text block. clamp() keeps it
+   proportional across screen sizes instead of a fixed pixel box. */
 .project-image {
-  flex: 0 0 96px;
-  width: 96px;
-  height: 96px;
+  flex: 0 1 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .project-image img {
-  display: block;
-  width: 100%;
-  height: 100%;
+  width: clamp(110px, 20vw, 220px);
+  height: auto;
+  aspect-ratio: 1 / 1;
   object-fit: contain;
+  display: block;
 }
 
-@media (max-width: 640px) {
-  .project-footer-row {
+@media (max-width: 720px) {
+  .project-card {
     flex-direction: column;
-    align-items: flex-start;
+    text-align: center;
+  }
+
+  .project-content {
+    text-align: left;
+  }
+
+  .project-image img {
+    width: clamp(96px, 40vw, 160px);
   }
 }
 
